@@ -13,6 +13,7 @@ body{
   font-family: 'Open Sans';
   color: #fff;
   min-height: 100%;
+  background-color: rgb(58,23,63);
 }
 
 .navbar {
