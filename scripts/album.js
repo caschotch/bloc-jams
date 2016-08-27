@@ -28,6 +28,38 @@ var albumMarconi = {
     ]
 };
 
+var albumMetallica = {
+    title: 'Ride the Lightning',
+    artist: 'Metallica',
+    label: 'Megaforce',
+    year: '1984',
+    albumArtUrl: 'assets/images/album_covers/18.png',
+    songs: [
+        { title: 'Fight Fire with Fire', duration: '4:45' },
+        { title: 'Ride the Lightning', duration: '6:36' },
+        { title: 'For Whom the Bell Tolls', duration: '5:09' },
+        { title: 'Fade to Black', duration: '6:57' },
+        { title: 'Trapped Under Ice', duration: '4:04'},
+        { title: 'Escape', duration: '4:23'},
+        { title: 'Creeping Death', duration: '6:36' },
+        { title: 'The Call of Ktulu', duration: '8:53'}
+    ]
+};
+
+function AlbumCollection(albums) {
+    this.albums = albums;
+    this.i = 0;
+    this.next = function() {
+        this.i++;
+        if (this.i === albums.length){
+            this.i = 0;
+        };
+        setCurrentAlbum(albums[this.i]);
+    }.bind(this);
+};
+
+var albumCollection = new AlbumCollection([albumPicasso, albumMarconi, albumMetallica]);
+
 var createSongRow = function(songNumber, songName, songLength){
     var template =
         '<tr class="album-view-song-item">'
@@ -63,3 +95,5 @@ var setCurrentAlbum = function(album){
 window.onload = function(){
     setCurrentAlbum(albumPicasso);
 };
+
+document.getElementsByClassName('album-cover-art')[0].addEventListener('click', albumCollection.next);
