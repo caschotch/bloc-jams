@@ -65,12 +65,23 @@ var findParentByClassName = function(element, classSelect){
     // what you are looking for = classSelect
     if (element){ // if you have element do this
         var currentParent = element.parentElement; //need to find out where element is
-        while(currentParent.className != classSelect && currentParent.className !== null){
-            currentParent = currentParent.parentElement; //moving up the dom tree
+        if (currentParent == null){
+            alert('No parent found');
+            return false;
+        } else {
+            while(currentParent.className != classSelect && currentParent.className !== null){
+                currentParent = currentParent.parentElement; //moving up the dom tree
+                if (currentParent == null){
+                    alert('No parent found with that class name')
+                    return false;
+                }
+            }
         }
         return currentParent;
     }
 };
+
+
 
 var getSongItem = function(element){
     switch(element.className){
